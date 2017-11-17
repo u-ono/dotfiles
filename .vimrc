@@ -1,9 +1,44 @@
+" install dir 
+let s:dein_dir = expand('~/.cache/dein') "<- dein によってプラグインがインストールされるディレクトリ ##########
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" dein installation check
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+" begin settings
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
+
+    " .toml file
+    let g:rc_dir = expand('~/.vim/dein') "<- dein.toml dein_lazy.toml を読み込むディレクトリ ##########
+    let s:toml = g:rc_dir . '/dein.toml'
+    " let s:lazy_toml = g:rc_dir . '/dein_lazy.toml' "<- dein_lazy.toml を使わない場合はこの行をコメントアウト##########
+
+    " read toml and cache
+    call dein#load_toml(s:toml, {'lazy': 0})
+    " call dein#load_toml(s:lazy_toml, {'lazy': 1}) "<- dein_lazy.toml を使わない場合はこの行をコメントアウト ##########
+
+    " end settings
+    call dein#end()
+    call dein#save_state()
+endif
+
+" plugin installation check
+if dein#check_install()
+    call dein#install()
+endif
+
 set encoding=utf-8
-scriptencoding utf-8
+scriptencoding utf-8 
 
 set fileencoding=utf-8 "保存時の文字コード
-set fileencodings=ucs-boms, utf-8, euc-jp, cp932 "読み込み時の文字コード
-set fileformats=unix, dos, mac "改行コードの自動判別、左が優先
+"set fileencodings=ucs-boms, utf-8, euc-jp, cp932 "読み込み時の文字コード
+set fileformats=unix "改行コードの自動判別、左が優先
 set ambiwidth=double "特殊文字が崩れるのを防ぐ
 
 set expandtab "タブ入力を複数の空白入力に置き換える
