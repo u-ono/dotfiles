@@ -33,11 +33,11 @@ if dein#check_install()
     call dein#install()
 endif
 
-set encoding=utf-8
-scriptencoding utf-8 
+"set encoding=utf-8
+"scriptencoding utf-8 
 
 set fileencoding=utf-8 "保存時の文字コード
-"set fileencodings=ucs-boms, utf-8, euc-jp, cp932 "読み込み時の文字コード
+set fileencodings=iso-2022-jp,sjis,utf-8,euc-jp,cp932 "読み込み時の文字コード
 set fileformats=unix "改行コードの自動判別、左が優先
 set ambiwidth=double "特殊文字が崩れるのを防ぐ
 
@@ -61,3 +61,12 @@ set cursorline "カーソルラインをハイライト
 
 set wildmenu "コマンドモードの補完
 set history=5000 "保存するコマンド履歴の数
+
+syntax on
+colorscheme molokai
+set t_Co=256
+
+map <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> cy ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+vnoremap <silent> cy c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
