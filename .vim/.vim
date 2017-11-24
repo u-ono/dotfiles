@@ -1,1 +1,0 @@
-/home/mech-user/dotfiles/.vim
