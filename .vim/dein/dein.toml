@@ -6,3 +6,10 @@ repo = 'tomasr/molokai'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'Shougo/vimshell'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
